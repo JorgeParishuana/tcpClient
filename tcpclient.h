@@ -2,6 +2,7 @@
 #define TCPCLIENT_H
 
 #include <QWidget>
+#include <QTcpSocket>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class TCPClient; }
@@ -17,5 +18,14 @@ public:
 
 private:
     Ui::TCPClient *ui;
+    QTcpSocket *qTcpSocket = nullptr;
+    QDataStream in;
+    QString receivedMessage;
+
+private slots:
+    void requestMessage();
+    void readMessage();
+    void showError(QAbstractSocket::SocketError socketError);
+
 };
 #endif // TCPCLIENT_H
